@@ -17,9 +17,9 @@ variable "github_details" {
 }
 
 variable "artifacts_bucket" {
-    description = "artifacts buckets"
-    type = string
-  
+  description = "artifacts buckets"
+  type        = string
+
 }
 variable "codebuild_names" {
   description = "the codebuild names for the different steps"
