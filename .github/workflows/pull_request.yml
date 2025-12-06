@@ -1,0 +1,23 @@
+  on:
+    push:
+      branches: 
+        - main
+        - develop
+        - satu
+    pull_request: 
+      branches: [main ,develop , satu]
+  jobs:
+    tf-formatting:
+      runs-on: ubuntu-latest
+      steps: 
+        - name: Check out repository
+          uses: actions/checkout@v2
+     
+        - name: Install terraform
+          uses: hashicorp/setup-terraform@v2
+          with:
+            terraform_wrapper: false
+            terraform_version: 1.2.8
+
+        - name: Terraform format check
+          run: terraform fmt -check -recursive
