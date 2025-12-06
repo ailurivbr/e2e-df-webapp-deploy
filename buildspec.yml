@@ -2,18 +2,20 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions:
-      python: latest
     commands:
-      - echo "Installing Terraform..."
-      - curl -s -o terraform.zip https://releases.hashicorp.com/terraform/1.5.6/terraform_1.5.6_linux_amd64.zip
-      - unzip terraform.zip
-      - mv terraform /usr/local/bin/
-      - terraform version
+      - echo "Downloading Terraform..."
+      - curl -s -L -o terraform.zip https://releases.hashicorp.com/terraform/1.5.6/terraform_1.5.6_linux_amd64.zip
+
+      - echo "Unzipping Terraform..."
+      - unzip -o terraform.zip
+
+      - echo "Moving Terraform binary..."
+      - mv terraform /usr/local/bin/terraform
+      - chmod +x /usr/local/bin/terraform
 
   build:
     commands:
-      - echo "Starting Terraform deployment..."
+      - echo "Running Terraform inside terraform/ directory..."
       - cd terraform
-      - terraform init -input=false
-      - terraform apply -auto-approve -input=false
+      - terraform init
+      - terraform apply -auto-approve
