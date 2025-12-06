@@ -3,17 +3,13 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo "Installing required packages..."
+      - echo "Installing Terraform..."
       - apt-get update -y
       - apt-get install -y unzip
-
-      - echo "Downloading Terraform..."
-      - curl -o terraform.zip https://releases.hashicorp.com/terraform/1.5.6/terraform_1.5.6_linux_amd64.zip
-
-      - unzip terraform.zip
-      - mv terraform /usr/local/bin/terraform
-      - chmod +x /usr/local/bin/terraform
-
+      - curl -s -o terraform.zip https://releases.hashicorp.com/terraform/1.5.6/terraform_1.5.6_linux_amd64.zip
+      - unzip -o terraform.zip
+      - chmod +x terraform
+      - mv terraform /usr/local/bin/
       - terraform version
 
   build:
