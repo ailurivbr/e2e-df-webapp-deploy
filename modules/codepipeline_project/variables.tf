@@ -40,6 +40,10 @@ variable "github_personal_access_token" {
   description = "PAT token"
   type        = string
 }
+variable "tf_version" {
+  description = "tf version"
+  type        = string
+}
 
 variable "tags" {
   description = "The tag to be applied to this module"
