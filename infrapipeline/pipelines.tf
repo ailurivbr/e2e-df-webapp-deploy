@@ -4,7 +4,7 @@ module "pipelines" {
   github_personal_access_token = "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"
 
   artifacts_bucket = aws_s3_bucket.codepipeline_bucket.bucket
-  tf_version       = "1.5.7"
+  tf_version       = ">= 1.5.7"
 
   github_details = {
     branch_name      = "main"
