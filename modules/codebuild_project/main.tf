@@ -22,7 +22,7 @@ resource "aws_codebuild_project" "main" {
 
   source {
     type            = "CODEPIPELINE"
-    buildspec       = ".aws/buildspec.yml"
+    buildspec       = "buildspec.yml"
     git_clone_depth = 1
   }
 
