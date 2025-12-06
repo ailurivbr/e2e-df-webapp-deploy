@@ -8,7 +8,6 @@ phases:
       - mv terraform /usr/local/bin/
   build:
     commands:
-      - cd ./terraform-codepipeline/ec2_s3_code
+      - cd ./terraform
       - terraform init
       - terraform apply -auto-approve
-      
