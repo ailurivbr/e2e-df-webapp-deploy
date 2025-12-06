@@ -4,7 +4,7 @@ module "codebuild_dev_tf_checks" {
   name             = "tf-checks"
   description      = "doorfeed application biuld pipeline"
   application      = "dev-app"
-  buildspec        = "../buildspec.yml"
+  buildspec        = "./buildspec.yml"
   service_role_arn = aws_iam_role.codebuild_role.arn
 
 }
@@ -15,7 +15,7 @@ module "codebuild_dev_tf_plan" {
   name             = "tf-plan"
   description      = "doorfeed application build pipeline"
   application      = "dev-app"
-  buildspec        = "../buildspec.yml"
+  buildspec        = "./buildspec.yml"
   service_role_arn = aws_iam_role.codebuild_role.arn
 
 }
@@ -26,7 +26,7 @@ module "codebuild_dev_tf_apply" {
   name             = "tf-apply"
   description      = "doorfeed application apply pipeline"
   application      = "dev-app"
-  buildspec        = "../buildspec.yml"
+  buildspec        = "./buildspec.yml"
   service_role_arn = aws_iam_role.codebuild_role.arn
 
 }
