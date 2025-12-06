@@ -17,6 +17,6 @@ module "pipelines" {
     apply  = module.codebuild_dev_tf_apply.name
   }
 
-  infrastructure_code_path = "./terraform"
+  infrastructure_code_path = "../terraform"
 
 }
