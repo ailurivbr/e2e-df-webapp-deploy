@@ -41,8 +41,8 @@ variable "github_personal_access_token" {
   type        = string
 }
 variable "tf_version" {
-    description = "tf version"
-    type = string
+  description = "tf version"
+  type        = string
 }
 
 variable "tags" {

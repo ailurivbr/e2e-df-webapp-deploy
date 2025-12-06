@@ -52,9 +52,9 @@ resource "aws_codepipeline" "main" {
             type  = "PLAINTEXT"
           },
           {
-            name = "TF_VERSION"
+            name  = "TF_VERSION"
             value = var.tf_version
-            type = "PLAINTEXT"
+            type  = "PLAINTEXT"
           }
         ])
       }
@@ -84,9 +84,9 @@ resource "aws_codepipeline" "main" {
             type  = "PLAINTEXT"
           },
           {
-            name = "TF_VERSION"
+            name  = "TF_VERSION"
             value = var.tf_version
-            type = "PLAINTEXT"
+            type  = "PLAINTEXT"
           }
         ])
       }
@@ -111,10 +111,10 @@ resource "aws_codepipeline" "main" {
             value = var.infrastructure_code_path
             type  = "PLAINTEXT"
           },
-            {
-            name = "TF_VERSION"
+          {
+            name  = "TF_VERSION"
             value = var.tf_version
-            type = "PLAINTEXT"
+            type  = "PLAINTEXT"
           }
         ])
       }
