@@ -50,6 +50,11 @@ resource "aws_codepipeline" "main" {
             name  = "INFRASTRUCTURE_CODE_PATH"
             value = var.infrastructure_code_path
             type  = "PLAINTEXT"
+          },
+          {
+            name = "TF_VERSION"
+            value = var.tf_version
+            type = "PLAINTEXT"
           }
         ])
       }
@@ -77,6 +82,11 @@ resource "aws_codepipeline" "main" {
             name  = "INFRASTRUCTURE_CODE_PATH"
             value = var.infrastructure_code_path
             type  = "PLAINTEXT"
+          },
+          {
+            name = "TF_VERSION"
+            value = var.tf_version
+            type = "PLAINTEXT"
           }
         ])
       }
@@ -100,6 +110,11 @@ resource "aws_codepipeline" "main" {
             name  = "INFRASTRUCTURE_CODE_PATH"
             value = var.infrastructure_code_path
             type  = "PLAINTEXT"
+          },
+            {
+            name = "TF_VERSION"
+            value = var.tf_version
+            type = "PLAINTEXT"
           }
         ])
       }
