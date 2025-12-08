@@ -1,10 +1,10 @@
 resource "aws_codepipeline" "doorfeed_pipeline" {
-  name     = "doorfeed-dev-pipeline"
-  role_arn = aws_iam_role.codepipeline_role.arn
+  name     = "doorfeed-dev-deploy-pipeline"
+  role_arn = ""
 
   artifact_store {
     type     = "S3"
-    location = aws_s3_bucket.codepipeline_bucket.bucket
+    location = ""
   }
 
   stage {
@@ -19,10 +19,10 @@ resource "aws_codepipeline" "doorfeed_pipeline" {
       output_artifacts = ["source_output"]
 
       configuration = {
-        Owner      = "Doorfeed"
-        Repo       = "doorfeed-app" # Need to add actual doorfeed githiub repo
+        Owner      = "ailurivbr"
+        Repo       = "e2e-df-webapp-deploy"
         Branch     = "main"
-        OAuthToken = "GITHUB_TOKEN" # Pls add github Oauth token
+        OAuthToken = "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" # Pls add github Oauth token
       }
     }
   }
@@ -40,25 +40,7 @@ resource "aws_codepipeline" "doorfeed_pipeline" {
       version          = "1"
 
       configuration = {
-        ProjectName = aws_codebuild_project.doorfeed_application_build.name
-      }
-    }
-  }
-
-  stage {
-    name = "Test"
-
-    action {
-      name             = "RunTests"
-      category         = "Test"
-      owner            = "AWS"
-      provider         = "CodeBuild"
-      input_artifacts  = ["build_output"]
-      output_artifacts = ["test_output"]
-      version          = "1"
-
-      configuration = {
-        ProjectName = aws_codebuild_project.doorfeed_test_project.name
+        ProjectName = module.codebuild_dev.name
       }
     }
   }
@@ -75,9 +57,30 @@ resource "aws_codepipeline" "doorfeed_pipeline" {
       input_artifacts = ["build_output"]
 
       configuration = {
-        ApplicationName     = aws_codedeploy_app.doorfeed_app.name
-        DeploymentGroupName = aws_codedeploy_deployment_group.doorfeed_deployment_group.deployment_group_name
+        ApplicationName     = "doorfeed-dev-app"
+        DeploymentGroupName = "doorfeed-dev-deployment-group"
       }
     }
   }
+}
+
+resource "aws_codepipeline_webhook" "main" {
+  count = var.add_webhook == false ? 1 : 0
+
+  name            = "df-tf-webhook"
+  authentication  = "GITHUB_HMAC"
+  target_action   = "Source"
+  target_pipeline = aws_codepipeline.doorfeed_pipeline.name
+
+  filter {
+    json_path    = "$.ref"
+    match_equals = "refs/heads/main"
+  }
+}
+
+resource "github_repository_webhook" "main" {
+  count = var.add_webhook == false ? 1 : 0
+
+  repository = "e2e-df-webapp-deploy"
+  events     = ["push"]
 }
