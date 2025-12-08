@@ -8,6 +8,7 @@ locals {
   EOT
 
   tags = {
-    Name = local.name
+    Name            = local.name
+    DeploymentGroup = "Doorfeed-dev-app"
   }
 }
