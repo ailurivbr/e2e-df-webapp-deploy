@@ -1,5 +1,5 @@
 locals {
-  name   = "myEC2"
+  name   = "myEC2-new"
   region = "us-east-1"
 
   user_data = <<-EOT
