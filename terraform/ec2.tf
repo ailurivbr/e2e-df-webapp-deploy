@@ -48,9 +48,6 @@ module "ec2_complete" {
   tags = local.tags
 }
 
-resource "aws_kms_key" "this" {
-}
-
 module "security_group" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "5.3.1"
